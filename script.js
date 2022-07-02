@@ -146,7 +146,7 @@ var app = new Vue ({
         sort: 'asc'
     },
     created: async function(){
-        let apiUrl = 'http://127.0.0.1:5500/products.json'
+        let apiUrl = 'ttps://tndong799.github.io/vue-assignment-2/products.json'
         try {
             this.listProducts = await this.getProductsFromApi(apiUrl) || []
         } catch (error) {
