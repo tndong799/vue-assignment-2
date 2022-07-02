@@ -147,8 +147,11 @@ var app = new Vue ({
     },
     created: async function(){
         let apiUrl = 'http://127.0.0.1:5500/products.json'
-        
-        this.listProducts = await this.getProductsFromApi(apiUrl)
+        try {
+            this.listProducts = await this.getProductsFromApi(apiUrl) || []
+        } catch (error) {
+            console.log(error)
+        }
         this.productsFilter = [...this.listProducts]
         this.checkedProducts = this.getProducts()
     },
