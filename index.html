@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Assignment 2</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app" id="app">
+        <h1 class="app__title">Add product</h1>
+        <div class="app__main">
+            <div class="app__main_header">
+                <search-comp v-model="search"></search-comp>
+                <sort-comp v-model="sort"></sort-comp>
+            </div>
+            <div class="app__main_content">
+                <table class="app__table">
+                    <thead>
+                        <tr>
+                            <th><div class="app__table--checkbox"><input type="checkbox" v-model="isChecked"></div></th>
+                            <th class="app__table--product"><span v-if="checkedProducts.length == 0">Product</span><span v-else>{{checkedProducts.length}} Product selected</span></th>
+                            <th class="app__table--price">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template>
+                            <product-item v-for="product in productsInOnePage" :data="product" :key="product.id" v-model="checkedProducts"></product-item>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="app__footer">
+            <btn name="Prev" class="btn--small btn--outline btn--prev" :disabled="currentPage === 1 ? true : false" @clicked="handlePrev">
+                <template slot="left">
+                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5 9L1 4.99161L5 1" stroke="#8F90A6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </template>
+            </btn>
+
+            <btn name="Next" class="btn--small btn--outline btn--next" :disabled="currentPage === totalPage ? true : false" @clicked="handleNext">
+                <template slot="right">
+                    <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L5 4.99161L1 9" stroke="#8F90A6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </template>
+            </btn>
+
+            <btn name="Cancle" class="btn--outline btn--cancle" @clicked="handleCancle"></btn>
+            <btn name="Save" @clicked="setProducts"></btn>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
