@@ -5,6 +5,7 @@
     --dark-0-color: #1C1C28;
     --dark-1-color: #28293D;
     --dark-3-color: #8F90A6;
+    --dark-4-color: #C7C9D9;
     --light-1-color: #EBEBF0;
     --dark-gray-01-color: #252627;
     --bg-color: #f5f5f5;
@@ -196,6 +197,10 @@ input, select{
     padding-bottom: 10px;
 }
 
+
+
+
+
 .app__table--checkbox {
     display: flex;
     align-items: center;
@@ -203,9 +208,72 @@ input, select{
 }
 
 .app__table--checkbox input{
+    -moz-appearance:none;
+	-webkit-appearance:none;
+	-o-appearance:none;
+    appearance: none;
+    position: relative;
     width: 16px;
     height: 16px;
 }
+
+.app__table--checkbox input::after{
+    box-sizing: border-box;
+    font-family: 'FontAwesome';
+    content: '\f00c';
+    position: absolute;
+    font-size: 1.2rem;
+    line-height: 16px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: var(--white-color);
+    background: var(--white-color);
+    border-radius: 2px;
+    border: 1px solid var(--dark-4-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.app__table  input:checked::after{
+    border-color: var(--primary-color);
+    background: var(--primary-color);
+}
+
+.app__table thead tr .app__table--checkbox input::after{
+    content: '';
+    border-radius: 2px;
+    width: 62.5%;
+    height: 2.5px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--white-color);
+    border-radius: 2px;
+    border: 0;
+}
+
+
+.app__table thead tr .app__table--checkbox input::before{
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--white-color);
+    border: 1px solid var(--dark-4-color);
+    border-radius: 2px;
+}
+.app__table thead tr .app__table--checkbox input:checked::before{
+    background-color: var(--primary-color);
+    border-color:  var(--primary-color);
+}
+
+
 
 .app__table--product,.app__table--price{
     text-align: left;
@@ -329,6 +397,3 @@ input, select{
     margin-right: 16px;
 }
 
-input[type="checkbox"]{
-    accent-color: var(--primary-color);
-}

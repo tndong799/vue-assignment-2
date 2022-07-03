@@ -164,7 +164,10 @@ var app = new Vue ({
                 if(!val){
                     this.checkedProducts = []
                 }else{
-                    this.checkedProducts = this.getProducts() 
+                    this.checkedProducts = this.getProducts()
+                    if(this.checkedProducts.length == 0){
+                        this.checkedProducts = this.listProducts.map(product => product.id)
+                    }
                 }
             }
         },
@@ -185,8 +188,8 @@ var app = new Vue ({
         // }
     },
     methods: {
-        handleCancle(e){
-            console.log(e.target)
+        handleCancle(){
+            this.checkedProducts = this.getProducts()
         },
         handleNext: function(){
             if(this.currentPage !== this.totalPage){
