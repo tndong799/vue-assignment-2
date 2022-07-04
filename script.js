@@ -172,7 +172,9 @@ var app = new Vue ({
                 }else{
                     this.checkedProducts = this.getProducts()
                     if(this.checkedProducts.length == 0){
-                        this.checkedProducts = this.listProducts.map(product => product.id)
+                        this.checkedProducts = this.search 
+                            ? this.productsFilter.map(product => product.id) 
+                            : this.listProducts.map(product => product.id)
                     }
                 }
             }
