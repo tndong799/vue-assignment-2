@@ -14,4 +14,17 @@
             <li>Nút Save: sẽ lưu tất cả products được check vào trong localStorage</li>
         </ul>
     </li>
+    <li>Kiến thức học được</li>
+    <li>
+        <ul>
+            <li>CSS: custom scrollbar, custom checkbox</li>
+            <li>Vue: component basic, pass props, watch, computed, two way binding, reuse component, debounce, loading, call api</li>
+        </ul>
+    </li>
+    <li>Hạn chế</li>
+    <li>
+        <ul>
+            <li>Do chưa tìm hiểu được nhiều về vue nên có vài chỗ e sử dụng không đc hợp lý lăm!!!</li>
+        </ul>
+    </li>
 </ul>

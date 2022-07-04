@@ -16,13 +16,13 @@
 <body>
     <div class="app" id="app">
         <h1 class="app__title">Add product</h1>
-        <div class="app__main">
+        <div class="app__main" :class="{app__scrollbar: !isLoading}">
             <div class="app__main_header">
                 <search-comp v-model="search"></search-comp>
                 <sort-comp v-model="sort"></sort-comp>
             </div>
             <div class="app__main_content">
-                <table class="app__table">
+                <table v-if="!isLoading" class="app__table">
                     <thead>
                         <tr>
                             <th><div class="app__table--checkbox"><input type="checkbox" v-model="isChecked"></div></th>
@@ -36,6 +36,7 @@
                         </template>
                     </tbody>
                 </table>
+                <div v-else class="app__spinner"></div>
             </div>
             
         </div>

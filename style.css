@@ -43,6 +43,7 @@ input, select{
     border: 0;
 }
 
+
 .app{
     width: 640px;
     height: 720px;
@@ -138,21 +139,21 @@ input, select{
 .app__main_content{
     position: relative;
     margin-top: 18px;
-    margin-right: -10px;
-    padding-right: 7px;
+    margin-right: -17px;
+    padding-right: 13px;
     width: auto;
     overflow: hidden auto;
     z-index: 2;
 }
 
 /* Fake scroll track */
-.app__main::after { 
+.app__scrollbar::after { 
     content:'';
     position: absolute;
     z-index: 1;
     height: calc(100% - 60px - 34px);
     top: 94px;
-    right: 14px;
+    right: 7px;
     width: 4px;
     background: var(--primary-a3-color);
     border-radius: 2px;
@@ -168,6 +169,7 @@ input, select{
     /* background-color: var(--primary-a3-color); */
     background: transparent;
 }
+
 
 .app__main_content::-webkit-scrollbar-thumb{
     border-radius: 2px;
@@ -252,7 +254,7 @@ input, select{
     content: '';
     border-radius: 2px;
     width: 62.5%;
-    height: 2.5px;
+    height: 3px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -400,4 +402,31 @@ input, select{
     margin-left: auto;
     margin-right: 16px;
 }
+
+
+.app__spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--primary-color);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+  }
+  
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
 

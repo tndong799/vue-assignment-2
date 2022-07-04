@@ -143,14 +143,20 @@ var app = new Vue ({
         currentPage: 1,
         limit: 10,
         search: '',
-        sort: 'asc'
+        sort: 'asc',
+        isLoading: false
     },
     created: async function(){
         let apiUrl = 'https://tndong799.github.io/vue-assignment-2/products.json'
         try {
-            this.listProducts = await this.getProductsFromApi(apiUrl) || []
+            this.isLoading = true
+            this.listProducts = await getProductsFromApi(apiUrl) || []
         } catch (error) {
             console.log(error)
+        } finally{
+            setTimeout(() => {
+                this.isLoading = false
+            },500)
         }
         this.productsFilter = [...this.listProducts]
         this.checkedProducts = this.getProducts()
@@ -180,9 +186,13 @@ var app = new Vue ({
         }
     },
     watch:{
-        'search': function(value){
+        'search': debounce(function(value){
             this.productsFilter = this.handleChangeSearch(value)
-        },
+        }, 500),
+        // 'search': function(value){
+        //     console.log(value)
+        //     this.productsFilter = this.handleChangeSearch(value)
+        // }
         // 'sort': function(val){
         //     this.productsInOnePage = this.handleSort(val)
         // }
@@ -224,9 +234,22 @@ var app = new Vue ({
         },
         setProducts: function(){
             localStorage.setItem('products',JSON.stringify(this.checkedProducts))
-        },
-        getProductsFromApi: async function(url){
-            return (await fetch(url)).json()
         }
     }
 })
+
+async function getProductsFromApi(url){
+    return (await fetch(url)).json()
+}
+
+function debounce (fn, delay) {
+    let timeoutID = null
+    return function () {
+        clearTimeout(timeoutID)
+        let args = arguments
+        let that = this
+        timeoutID = setTimeout(function () {
+            fn.apply(that, args)
+        }, delay)
+    }
+}
