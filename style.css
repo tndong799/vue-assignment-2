@@ -138,10 +138,13 @@ input, select{
 .app__main_content{
     position: relative;
     margin-top: 18px;
-    width: 100%;
+    margin-right: -10px;
+    padding-right: 7px;
+    width: auto;
     overflow: hidden auto;
     z-index: 2;
 }
+
 /* Fake scroll track */
 .app__main::after { 
     content:'';
@@ -149,7 +152,7 @@ input, select{
     z-index: 1;
     height: calc(100% - 60px - 34px);
     top: 94px;
-    right: 24px;
+    right: 14px;
     width: 4px;
     background: var(--primary-a3-color);
     border-radius: 2px;
